@@ -61,39 +61,6 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
-
-  
-    input[type=range] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 25px;
-      background: linear-gradient(to right, #ff69b4, #ff1493);
-      border-radius: 15px;
-      outline: none;
-      padding: 0;
-      margin: 0;
-      cursor: pointer;
-    }
-
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 40px;
-      height: 40px;
-      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    input[type=range]::-moz-range-thumb {
-      width: 40px;
-      height: 40px;
-      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -127,36 +94,39 @@
     }
 
     function launchConfetti() {
-  for (let i = 0; i < 100; i++) {
-    const confetti = document.createElement("div");
-    confetti.className = "confetti";
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
-    confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 4000);
-  }
-}
-  <!-- Multiple Choice Question -->
-<h2>Quick Question: How many years you want us to be together?" 💘</h2>
-<div class="sentence-box">
-  <button onclick="checkMCQAnswer(this)">20 years</button>
-  <button onclick="checkMCQAnswer(this)"> 100 years</button>
-  <button onclick="checkMCQAnswer(this)">7 janam</button> 
-  <button onclick="checkMCQAnswer(this)">7 janam se bhi jyda</button> <!-- Correct one -->
-</div>
-
-<script>
-  const correctMCQAnswer = "7 janam se bhi jyda";
-
-  function checkMCQAnswer(btn) {
-    if (btn.innerText.trim() === correctMCQAnswer) {
-      alert("That's right! Love is full of passion ❤️");
-      window.location.href = 'final.html'; // Redirect to your final page
-    } else {
-      alert("Hmm... Not quite! Try again 🌈");
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
     }
-  }
-</script>
+  </script>
+
+  <!-- Replaced Slider with MCQ Game -->
+  <h2>Quick Question: How many years you want us to be together? 💘</h2>
+  <div class="sentence-box">
+    <button onclick="checkMCQAnswer(this)">20 years</button>
+    <button onclick="checkMCQAnswer(this)">100 years</button>
+    <button onclick="checkMCQAnswer(this)">7 janam</button> 
+    <button onclick="checkMCQAnswer(this)">7 janam se jyda</button> <!-- Correct -->
+  </div> 
+
+  <script>
+    const correctMCQAnswer = "7 janam se jyda";
+
+    function checkMCQAnswer(btn) {
+      if (btn.innerText.trim() === correctMCQAnswer) {
+        alert("That's right! Love is full of passion ❤️");
+        window.location.href = 'final.html'; // Change to your next page if needed
+      } else {
+        alert("Hmm... Not quite! Try again 🌈");
+      }
+    }
+  </script>
+
 </body>
 </html>
