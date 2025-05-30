@@ -142,64 +142,11 @@
     <source src="birthday-tune.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-<!-- Slide to Letter -->
-<div class="slide-container">
-  <div class="slider-track" id="sliderTrack">
-    <span class="slider-text">Slide to Read a Special Letter</span>
-    <div class="slider-button" id="sliderButton"></div>
-  </div>
+  <div style="position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; z-index: 999;">
+  <button onclick="window.location.href='letter.html'" style="padding: 15px 30px; font-size: 1em; font-weight: bold; color: white; background-color: #ff69b4; border: none; border-radius: 25px; box-shadow: 0 0 10px #ff1493; cursor: pointer;">
+    Read a Special Letter
+  </button>
 </div>
-
-<style>
-  .slide-container {
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 999;
-  }
-
-  .slider-track {
-    position: relative;
-    width: 320px;
-    height: 50px;
-    background-color: #fcdfff;
-    border-radius: 50px;
-    border: 2px solid #d63384;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(214, 51, 132, 0.5);
-    cursor: pointer;
-  }
-
-  .slider-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: #d63384;
-    font-weight: bold;
-    font-size: 1em;
-    pointer-events: none;
-  }
-
-  .slider-button {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    background-color: #ff69b4;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ff69b4;
-    transition: background-color 0.3s;
-  }
-
-  .slider-button.dragging {
-    background-color: #ff1493;
-  }
-</style>
-
 <script>
   const sliderButton = document.getElementById("sliderButton");
   const sliderTrack = document.getElementById("sliderTrack");
