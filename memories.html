@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Beautiful Memories</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      padding-top: 80px; /* push below navbar */
+      background-color: #c8a2c8;
+      font-family: 'Comic Sans MS', cursive;
+      border: 15px double #fff8dc;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Slide bar */
+    .slider-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ff69b4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .slider-bar a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 20px;
+      padding: 10px 20px;
+      background-color: #ff1493;
+      border-radius: 30px;
+      transition: background 0.3s;
+    }
+
+    .slider-bar a:hover {
+      background-color: #d63384;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 2px #d63384;
+      margin-bottom: 40px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: 250px;
+      height: 300px;
+      border: 8px solid #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+      background-color: #fff;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(20px) brightness(0.5);
+      transition: all 0.6s ease;
+    }
+
+    .photo-frame.revealed img {
+      filter: none;
+    }
+
+    .reveal-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #d63384;
+    }
+
+    .reveal-btn:hover {
+      background-color: #ff1493;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle, #ff69b4, #ff1493);
+      border-radius: 50%;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        bottom: -100px;
+        opacity: 0.8;
+        transform: translateX(0) scale(1);
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(-20px) scale(1.1);
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 14px;
+      background-color: #fff;
+      opacity: 0.7;
+      animation: confettiFall 4s linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .special-message {
+      position: absolute;
+      top: 50%;
+      left: 260px;
+      transform: translateY(-50%);
+      max-width: 220px;
+      padding: 15px;
+      background: #ff69b4;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #d63384;
+      font-weight: bold;
+      font-size: 1em;
+      text-align: center;
+      z-index: 10;
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide Bar -->
+  <div class="slider-bar">
+    <a href="game.html">Play a Game 🎮, but first reveal it!!</a>
+  </div>
+
+  <h1>The most beautiful baby I have for my own!!</h1>
+
+  <!-- Photo Frames -->
+  <div class="gallery">
+    <div class="photo-frame">
+      <img src="photo 1.jpg" alt="Memory 1" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+    </div>
+    <div class="photo-frame">
+      <img src="photo 2.jpg" alt="Memory 2" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+    </div>
+    <div class="photo-frame">
+      <img src="photo 3.jpg" alt="Memory 3" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+    </div>
+    <div class="photo-frame">
+      <img src="photo 4.jpg" alt="Memory 4" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+    </div>
+    <div class="photo-frame">
+      <img src="photo 5.jpg" alt="Memory 5" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+    </div>
+    <!-- Last frame with special message -->
+    <div class="photo-frame" id="last-frame">
+      <img src="photo 6.jpg" alt="Memory 6" />
+      <button class="reveal-btn" onclick="revealPhoto(this)">Reveal</button>
+      <div class="special-message">
+        You are the most beautiful person I've ever seen 💖
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      balloon.style.background = `radial-gradient(circle, hsl(${Math.random()*360}, 100%, 70%), hsl(${Math.random()*360}, 100%, 40%))`;
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 10000);
+    }
+
+    setInterval(createBalloon, 300);
+
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 70%)`;
+      confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 5000);
+    }
+
+    setInterval(createConfetti, 200);
+
+    function revealPhoto(button) {
+      const frame = button.closest('.photo-frame');
+      frame.classList.add('revealed');
+      button.style.display = 'none';
+
+      if (frame.id === 'last-frame') {
+        const message = frame.querySelector('.special-message');
+        if (message) {
+          message.style.display = 'block';
+          setTimeout(() => {
+            message.style.opacity = 1;
+          }, 10);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Choose the Right Sentence!</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding: 40px 20px 100px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #d63384;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .sentence-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      background-color: #fff;
+      opacity: 0.8;
+      animation: confettiFall 4s linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* Slider bar at bottom */
+    .slider-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .slider-label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #d63384;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 25px;
+      background: linear-gradient(to right, #ff69b4, #ff1493);
+      border-radius: 15px;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Choose the Correct Sentence 💡</h1>
+
+  <div class="sentence-box">
+    <button onclick="checkAnswer(this)">She is just okay.</button>
+    <button onclick="checkAnswer(this)">She is kind of dumb.</button>
+    <button onclick="checkAnswer(this)">She’s the one who makes me angry</button>
+    <button onclick="checkAnswer(this)">She doesn’t really care.</button>
+    <button onclick="checkAnswer(this)">She’s annoying sometimes.</button>
+    <button onclick="checkAnswer(this)">She is always late.</button>
+    <button onclick="checkAnswer(this)">She is a fashion disaster.</button>
+    <button onclick="checkAnswer(this)">She doesn’t make me smile.</button>
+    <button onclick="checkAnswer(this)">She is the most beautiful soul ever! 💖</button> <!-- Correct one -->
+    <button onclick="checkAnswer(this)">She never understands anything.</button>
+  </div>
+
+  <!-- Confetti script -->
+  <script>
+    let correctSentence = "She is the most beautiful soul ever! 💖";
+
+    function checkAnswer(btn) {
+      if (btn.innerText.trim() === correctSentence.trim()) {
+        alert("Correct! You really know yourself darling! 😍");
+        launchConfetti();
+      } else {
+        alert("Oops! Try again, beautiful 💕");
+      }
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+
+  <!-- Slider to next page -->
+  <div class="slider-container">
+    <div class="slider-label">Slide to reveal your final message 💌</div>
+    <input type="range" min="0" max="100" value="0" id="slider" />
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    slider.addEventListener('input', function () {
+      if (parseInt(this.value) >= 100) {
+        window.location.href = 'final.html'; // Replace with your actual final page name
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Divyanshi!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #c8a2c8; /* Lilac background */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      border: 15px double #fff8dc; /* Beautiful double white border */
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 3em;
+      margin-top: 20px;
+      text-shadow: 2px 2px #800080;
+    }
+
+    .balloon {
+      width: 60px;
+      height: 80px;
+      background: radial-gradient(circle, #ff69b4, #ff1493);
+      border-radius: 50% 50% 50% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 10px;
+      float: left;
+      animation: float 5s ease-in-out infinite;
+      box-shadow: 0 0 10px #ff1493;
+    }
+
+    .balloons-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      gap: 10px;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall 5s infinite linear;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+
+    /* Rising Balloons Animation */
+    .rising-balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle, #87CEFA, #4682B4);
+      border-radius: 50%;
+      animation: rise 8s linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        bottom: 0;
+        left: calc(100% * var(--i));
+        opacity: 1;
+      }
+      100% {
+        bottom: 100vh;
+        left: calc(100% * var(--i) + 50px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday Divyanshi!</h1>
+
+  <!-- Stationary Balloons with Letters -->
+  <div class="balloons-container">
+    <div class="balloon">D</div>
+    <div class="balloon">I</div>
+    <div class="balloon">V</div>
+    <div class="balloon">Y</div>
+    <div class="balloon">A</div>
+    <div class="balloon">N</div>
+    <div class="balloon">S</div>
+    <div class="balloon">H</div>
+    <div class="balloon">I</div>
+  </div>
+
+  <!-- Confetti Falling -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      confetti.style.opacity = Math.random();
+      document.body.appendChild(confetti);
+    }
+
+    // Rising balloons
+    for (let i = 0; i < 10; i++) {
+      const balloon = document.createElement('div');
+      balloon.className = 'rising-balloon';
+      balloon.style.setProperty('--i', Math.random());
+      balloon.style.left = `${Math.random() * 100}vw`;
+      balloon.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      document.body.appendChild(balloon);
+    }
+  </script>
+
+  <!-- Birthday Song -->
+  <audio autoplay loop>
+    <source src="birthday-tune.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+<!-- Slide to Letter -->
+<div class="slide-container">
+  <div class="slider-track" id="sliderTrack">
+    <span class="slider-text">Slide to Read a Special Letter</span>
+    <div class="slider-button" id="sliderButton"></div>
+  </div>
+</div>
+
+<style>
+  .slide-container {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+  }
+
+  .slider-track {
+    position: relative;
+    width: 320px;
+    height: 50px;
+    background-color: #fcdfff;
+    border-radius: 50px;
+    border: 2px solid #d63384;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(214, 51, 132, 0.5);
+    cursor: pointer;
+  }
+
+  .slider-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #d63384;
+    font-weight: bold;
+    font-size: 1em;
+    pointer-events: none;
+  }
+
+  .slider-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #ff69b4;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff69b4;
+    transition: background-color 0.3s;
+  }
+
+  .slider-button.dragging {
+    background-color: #ff1493;
+  }
+</style>
+
+<script>
+  const sliderButton = document.getElementById("sliderButton");
+  const sliderTrack = document.getElementById("sliderTrack");
+
+  let isDragging = false;
+  let startX;
+  let currentX;
+
+  sliderButton.addEventListener("mousedown", function (e) {
+    isDragging = true;
+    startX = e.clientX;
+    sliderButton.classList.add("dragging");
+  });
+
+  document.addEventListener("mousemove", function (e) {
+    if (!isDragging) return;
+    currentX = e.clientX - startX;
+    const maxMove = sliderTrack.offsetWidth - sliderButton.offsetWidth;
+
+    if (currentX < 0) currentX = 0;
+    if (currentX > maxMove) currentX = maxMove;
+
+    sliderButton.style.left = `${currentX}px`;
+  });
+
+  document.addEventListener("mouseup", function () {
+    if (!isDragging) return;
+    isDragging = false;
+    sliderButton.classList.remove("dragging");
+
+    const maxMove = sliderTrack.offsetWidth - sliderButton.offsetWidth;
+
+    if (currentX >= maxMove - 10) {
+      // Redirect to letter page
+      window.location.href = "letter.html";
+    } else {
+      // Snap back
+      sliderButton.style.left = "0";
+    }
+  });
+</script>
+</body>
+</html>
