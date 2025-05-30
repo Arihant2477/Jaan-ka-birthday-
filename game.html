@@ -61,6 +61,54 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
+    /* Slider bar at bottom */
+    .slider-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .slider-label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #d63384;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 25px;
+      background: linear-gradient(to right, #ff69b4, #ff1493);
+      border-radius: 15px;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 40px;
+      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 40px;
+      height: 40px;
+      background: url('https://emojicdn.elk.sh/❤️') no-repeat center/contain;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -98,43 +146,26 @@
         const confetti = document.createElement("div");
         confetti.className = "confetti";
         confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
-        confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        confetti.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 70%);
+        confetti.style.animationDuration = ${Math.random() * 2 + 3}s;
         document.body.appendChild(confetti);
         setTimeout(() => confetti.remove(), 4000);
       }
     }
   </script>
 
-  <!-- NEW MCQ question replacing the slider -->
-
-  <h2>How many years do you want us together? 💞</h2>
-  <div class="sentence-box" id="years-question">
-    <button onclick="checkYearsAnswer(this)">a- 20 years</button>
-    <button onclick="checkYearsAnswer(this)">b- 100 years</button>
-    <button onclick="checkYearsAnswer(this)">c- 7 janam</button>
-    <button onclick="checkYearsAnswer(this)">d- 7 janam se bhi jyda</button>
-  </div>
-
-  <div id="nextPageBtnContainer" style="display:none; margin-top: 30px;">
-    <button id="nextPageBtn">Go to Final Message</button>
+  <!-- Slider to next page -->
+  <div class="slider-container">
+    <div class="slider-label">Slide to reveal your final message 💌</div>
+    <input type="range" min="0" max="100" value="0" id="slider" />
   </div>
 
   <script>
-    const correctYearsAnswer = "d- 7 janam se bhi jyda";
-
-    function checkYearsAnswer(btn) {
-      if (btn.innerText.trim() === correctYearsAnswer) {
-        alert("Correct! You really want us forever! 💖");
-        launchConfetti();
-        document.getElementById('nextPageBtnContainer').style.display = 'block';
-      } else {
-        alert("Oops! That’s sweet, but not quite right. Try again! 🌸");
+    const slider = document.getElementById('slider');
+    slider.addEventListener('input', function () {
+      if (parseInt(this.value) >= 100) {
+        window.location.href = 'final.html'; // Replace with your actual final page name
       }
-    }
-
-    document.getElementById('nextPageBtn').addEventListener('click', () => {
-      window.location.href = 'final.html'; // Change this to your final page URL
     });
   </script>
 
