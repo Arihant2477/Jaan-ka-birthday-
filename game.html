@@ -142,32 +142,37 @@
     }
 
     function launchConfetti() {
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement("div");
-        confetti.className = "confetti";
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 70%);
-        confetti.style.animationDuration = ${Math.random() * 2 + 3}s;
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 4000);
-      }
+  for (let i = 0; i < 100; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "confetti";
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 4000);
+  }
+}
+  <!-- Multiple Choice Question -->
+<h2>Quick Question: How many years you want us to be together?" 💘</h2>
+<div class="sentence-box">
+  <button onclick="checkMCQAnswer(this)">20 years</button>
+  <button onclick="checkMCQAnswer(this)"> 100 years</button>
+  <button onclick="checkMCQAnswer(this)">7 janam</button> 
+  <button onclick="checkMCQAnswer(this)">7 janam se bhi jyda</button> <!-- Correct one -->
+</div>
+
+<script>
+  const correctMCQAnswer = "7 janam se bhi jyda";
+
+  function checkMCQAnswer(btn) {
+    if (btn.innerText.trim() === correctMCQAnswer) {
+      alert("That's right! Love is full of passion ❤️");
+      window.location.href = 'final.html'; // Redirect to your final page
+    } else {
+      alert("Hmm... Not quite! Try again 🌈");
     }
-  </script>
-
-  <!-- Slider to next page -->
-  <div class="slider-container">
-    <div class="slider-label">Slide to reveal your final message 💌</div>
-    <input type="range" min="0" max="100" value="0" id="slider" />
-  </div>
-
-  <script>
-    const slider = document.getElementById('slider');
-    slider.addEventListener('input', function () {
-      if (parseInt(this.value) >= 100) {
-        window.location.href = 'final.html'; // Replace with your actual final page name
-      }
-    });
-  </script>
+  }
+</script>
 
 </body>
 </html>
