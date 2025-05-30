@@ -152,20 +152,33 @@
         setTimeout(() => confetti.remove(), 4000);
       }
     }
-  </script>
+<h2>How many years do you want us together? 💞</h2>
+  <div class="sentence-box" id="years-question">
+    <button onclick="checkYearsAnswer(this)">a- 20 years</button>
+    <button onclick="checkYearsAnswer(this)">b- 100 years</button>
+    <button onclick="checkYearsAnswer(this)">c- 7 janam</button>
+    <button onclick="checkYearsAnswer(this)">d- 7 janam se bhi jyda</button>
+  </div>
 
-  <!-- Slider to next page -->
-  <div class="slider-container">
-    <div class="slider-label">Slide to reveal your final message 💌</div>
-    <input type="range" min="0" max="100" value="0" id="slider" />
+  <div id="nextPageBtnContainer" style="display:none; margin-top: 30px;">
+    <button id="nextPageBtn">Go to Final Message</button>
   </div>
 
   <script>
-    const slider = document.getElementById('slider');
-    slider.addEventListener('input', function () {
-      if (parseInt(this.value) >= 100) {
-        window.location.href = 'final.html'; // Replace with your actual final page name
+    const correctYearsAnswer = "d- 7 janam se bhi jyda";
+
+    function checkYearsAnswer(btn) {
+      if (btn.innerText.trim() === correctYearsAnswer) {
+        alert("Correct! You really want us forever! 💖");
+        launchConfetti();
+        document.getElementById('nextPageBtnContainer').style.display = 'block';
+      } else {
+        alert("Oops! That’s sweet, but not quite right. Try again! 🌸");
       }
+    }
+
+    document.getElementById('nextPageBtn').addEventListener('click', () => {
+      window.location.href = 'final.html'; // Change this to your final page URL
     });
   </script>
 
