@@ -76,13 +76,12 @@
     <button onclick="checkAnswer(this)">She is always late.</button>
     <button onclick="checkAnswer(this)">She is a fashion disaster.</button>
     <button onclick="checkAnswer(this)">She doesn’t make me smile.</button>
-    <button onclick="checkAnswer(this)">She is the most beautiful soul ever! 💖</button> <!-- Correct one -->
+    <button onclick="checkAnswer(this)">She is the most beautiful soul ever! 💖</button> <!-- Correct -->
     <button onclick="checkAnswer(this)">She never understands anything.</button>
   </div>
 
-  <!-- Confetti script -->
   <script>
-    let correctSentence = "She is the most beautiful soul ever! 💖";
+    const correctSentence = "She is the most beautiful soul ever! 💖";
 
     function checkAnswer(btn) {
       if (btn.innerText.trim() === correctSentence.trim()) {
@@ -106,22 +105,22 @@
     }
   </script>
 
-  <!-- Replaced Slider with MCQ Game -->
-  <h2>Quick Question: How many years you want us to be together? 💘</h2>
+  <!-- MCQ Game Replacing the Slider -->
+  <h2>Quick Question: What's the color of love? 💘</h2>
   <div class="sentence-box">
-    <button onclick="checkMCQAnswer(this)">20 years</button>
-    <button onclick="checkMCQAnswer(this)">100 years</button>
-    <button onclick="checkMCQAnswer(this)">7 janam</button> 
-    <button onclick="checkMCQAnswer(this)">7 janam se jyda</button> <!-- Correct -->
-  </div> 
+    <button onclick="checkMCQAnswer(this)">Blue</button>
+    <button onclick="checkMCQAnswer(this)">Green</button>
+    <button onclick="checkMCQAnswer(this)">Red</button> <!-- Correct -->
+    <button onclick="checkMCQAnswer(this)">Yellow</button>
+  </div>
 
   <script>
-    const correctMCQAnswer = "7 janam se jyda";
+    const correctMCQAnswer = "Red";
 
     function checkMCQAnswer(btn) {
       if (btn.innerText.trim() === correctMCQAnswer) {
         alert("That's right! Love is full of passion ❤️");
-        window.location.href = 'final.html'; // Change to your next page if needed
+        window.location.href = 'final.html'; // Change this to the path of your final page
       } else {
         alert("Hmm... Not quite! Try again 🌈");
       }
