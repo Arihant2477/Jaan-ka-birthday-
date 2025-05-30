@@ -89,102 +89,10 @@
 
     <a class="back-link" href="birthday.html">🎈 Back to Birthday Celebration</a>
   </div>
-<!-- Slide to I Miss You Page -->
-<div class="slide-container">
-  <div class="slider-track" id="sliderTrack">
-    <span class="slider-text">Slide to See How Much I Miss You</span>
-    <div class="slider-button" id="sliderButton"></div>
-  </div>
+<div style="position: fixed; bottom: 30px; width: 100%; display: flex; justify-content: center; z-index: 999;">
+  <button onclick="window.location.href='missyou.html'" style="padding: 15px 30px; font-size: 1em; font-weight: bold; color: white; background-color: #ff69b4; border: none; border-radius: 25px; box-shadow: 0 0 10px #ff1493; cursor: pointer;">
+    See Arihant's harwork and love
+  </button>
 </div>
-
-<style>
-  .slide-container {
-    position: fixed;
-    bottom: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 999;
-  }
-
-  .slider-track {
-    position: relative;
-    width: 340px;
-    height: 50px;
-    background-color: #ffe6f0;
-    border-radius: 50px;
-    border: 2px solid #d63384;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(214, 51, 132, 0.5);
-    cursor: pointer;
-  }
-
-  .slider-text {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: #d63384;
-    font-weight: bold;
-    font-size: 1em;
-    pointer-events: none;
-  }
-
-  .slider-button {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    background-color: #ff69b4;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ff69b4;
-    transition: background-color 0.3s;
-  }
-
-  .slider-button.dragging {
-    background-color: #ff1493;
-  }
-</style>
-
-<script>
-  const sliderButton = document.getElementById("sliderButton");
-  const sliderTrack = document.getElementById("sliderTrack");
-
-  let isDragging = false;
-  let startX;
-  let currentX;
-
-  sliderButton.addEventListener("mousedown", function (e) {
-    isDragging = true;
-    startX = e.clientX;
-    sliderButton.classList.add("dragging");
-  });
-
-  document.addEventListener("mousemove", function (e) {
-    if (!isDragging) return;
-    currentX = e.clientX - startX;
-    const maxMove = sliderTrack.offsetWidth - sliderButton.offsetWidth;
-
-    if (currentX < 0) currentX = 0;
-    if (currentX > maxMove) currentX = maxMove;
-
-    sliderButton.style.left = `${currentX}px`;
-  });
-
-  document.addEventListener("mouseup", function () {
-    if (!isDragging) return;
-    isDragging = false;
-    sliderButton.classList.remove("dragging");
-
-    const maxMove = sliderTrack.offsetWidth - sliderButton.offsetWidth;
-
-    if (currentX >= maxMove - 10) {
-      window.location.href = "missyou.html";
-    } else {
-      sliderButton.style.left = "0";
-    }
-  });
-</script>
 </body>
 </html>
